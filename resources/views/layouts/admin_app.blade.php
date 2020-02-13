@@ -75,15 +75,15 @@
         <main class="py-4">
             <h1 class="text-center">{{ $page_title }}</h1>
             <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                     @component('admin.sidebar')@endcomponent
                 </div>
                 <div class="col-9">
                     @yield('content')
                 </div>
             </div>
-            
         </main>
     </div>
+    <script src="{{ asset('js/custom.js') }}" defer></script>
 </body>
 </html>

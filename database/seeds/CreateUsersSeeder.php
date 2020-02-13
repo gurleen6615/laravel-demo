@@ -14,16 +14,18 @@ class CreateUsersSeeder extends Seeder
     {
         $user = [
             [
-               'name'=>'Admin',
-               'email'=>'admin@mailinator.com',
+              'name'=>'Admin',
+              'email'=>'admin@mailinator.com',
             	'is_admin'=>'1',
-               'password'=> bcrypt('123456'),
+              'role_id'=>'1',
+              'password'=> bcrypt('123456'),
             ],
             [
-               'name'=>'User',
-               'email'=>'testuc@mailinator.com',
-                'is_admin'=>'0',
-               'password'=> bcrypt('123456'),
+              'name'=>'User',
+              'email'=>'testuc@mailinator.com',
+              'is_admin'=>'0',
+              'role_id'=>'2',
+              'password'=> bcrypt('123456'),
             ],
         ];
   
