@@ -4,6 +4,9 @@
 <div class="alert alert-success success-box" style="display: none;">
     Data updated!
 </div>
+<div class="alert alert-danger error-box" style="display: none;">
+    
+</div>
 <table class="table table-striped">
 	<tr>
 		<th>Username</th>

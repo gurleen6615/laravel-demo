@@ -21,6 +21,9 @@ class AdminController extends Controller
     public function __invoke(Request $request){
         //
     }
+    public function __construct(){
+        $this->middleware('CheckPermission');
+    }
     public function dashboard(Request $request){
         $user=User::with('roles')->get();
         $roles = Role::all();
@@ -36,6 +39,9 @@ class AdminController extends Controller
         $permissions = DB::table('permissions')
                 ->orderBy('id', 'desc')
                 ->get();
+
+        $controllers = $this->get_All_Controllers();
+
         return view('admin.permissions_listing',['page_title' => 'Permissions','permissions'=>$permissions]);
     }
     public function add_role(Request $request){
@@ -50,8 +56,14 @@ class AdminController extends Controller
             }
             return redirect('admin/roles')->with('status', 'New Role  added!');
         }
-        $permissions = Permission::all();
-        return view('admin.add_role',['page_title' => 'Add Role','permissions'=>$permissions]);
+        $controllers = $this->get_All_Controllers();
+        /*$permissions = Permission::all();*/
+        return view('admin.add_role',['page_title' => 'Add Role','controllers'=>$controllers]);
+    }
+    public function get_All_Controllers(){
+        $controllerOBJ = new ManageRoutesController;
+        $controllers = $controllerOBJ->getAllControllers();
+        return $controllers;
     }
     public function edit_role(Request $request,$role_id=''){
         if ($request->isMethod('post')) {
@@ -74,16 +86,22 @@ class AdminController extends Controller
         return redirect('admin/roles')->with('status', 'Role Deleted');
     }
 
-    public function add_permission(Request $request){
-        if ($request->isMethod('post')) {
-            $data = $request->all();
-            $permission = new Permission;
-            $permission->name = $data['name'];
-            $permission->guard_name = "web";
-            $permission->save();
-            return redirect('admin/permissions')->with('status', 'New Permission  added!');
+    public function update_permissions(Request $request){
+        $controllers = $this->get_All_Controllers();
+        foreach($controllers as $con){
+            $permissionArray = DB::table('permissions')->where('name',$con['controller'].'_'.$con['action'])->get();
+            
+            if($permissionArray->isEmpty()){
+                $permission = new Permission;
+                $permission->name = $con['controller'].'_'.$con['action'];
+                $permission->guard_name = "web";
+                $permission->save();
+            }
+            else{
+                
+            }
         }
-        return view('admin.add_permission',['page_title' => 'Add Permission']);
+        return redirect('admin/permissions')->with('status', 'Permissions updated!');
     }
 
     public function edit_permission(Request $request,$permission_id=''){

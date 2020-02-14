@@ -27,6 +27,22 @@
 	                    	</span>
 	                    </a>
                 	</li>
+                	<li class="nav-item">
+	                    <a class="nav-link text-truncate" href="{{ route('admin.manage_posts') }}">
+	                    	<i class="fa fa-home"></i> 
+	                    	<span class="d-none d-sm-inline">
+	                    		Manage Posts
+	                    	</span>
+	                    </a>
+                	</li>
+                	<li class="nav-item">
+	                    <a class="nav-link text-truncate" href="{{ route('admin.manage_pages') }}">
+	                    	<i class="fa fa-home"></i> 
+	                    	<span class="d-none d-sm-inline">
+	                    		Manage Pages
+	                    	</span>
+	                    </a>
+                	</li>
 	            </ul>
 	        </div>
 	    </div>

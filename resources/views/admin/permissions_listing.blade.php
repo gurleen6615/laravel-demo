@@ -8,26 +8,25 @@
     </div>
 @endif
 <div class="text-right">
-	<a href="{{ route('admin.add_permission') }}" class="btn btn btn-danger mb-3">Add Permission</a>
+	<a href="{{ route('admin.update_permissions') }}" class="btn btn btn-danger mb-3">Update Permissions</a>
 </div>
 <table class="table table-striped">
 	<tr>
-		<th>Permission Name</th>
-		<th style="width:35%;">Actions</th>
+		<th>Permission Controller</th>
+		<th>Permission Action</th>
 	</tr>	
 	@foreach($permissions as $permission)
 		<tr>
+			@php
+				$pArray = explode('_',$permission->name);
+			@endphp
 			<td>
-				{{$permission->name}}
+				{{ $pArray[0] }}
 			</td>
 			<td>
-				<a href="{{ route('admin.edit_permission',['permission_id'=>$permission->id]) }}" class="btn btn-primary mr-2">
-					Edit Permission
-				</a>
-				<a href="{{ route('admin.delete_permission',['permission_id'=>$permission->id]) }}" class="btn btn-secondary mr-2">
-					Delete Permission
-				</a>
+				{{ $pArray[1] }}
 			</td>
+			
 		</tr>
 	@endforeach
 </table>

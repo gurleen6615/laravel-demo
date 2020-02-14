@@ -33,7 +33,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about-us') }}">{{ __('About us') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact-us') }}">{{ __('Contact us') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('privacy') }}">{{ __('Privacy Policy') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('terms') }}">{{ __('Terms') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

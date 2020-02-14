@@ -12,7 +12,7 @@
       	<div class="valid-feedback">Valid.</div>
       	<div class="invalid-feedback">Please fill out this field.</div>
     </div>
-     <div class="form-group ">
+    {{-- <div class="form-group ">
         <label>Permissions for this Role:</label>
         @foreach ($permissions as $permission)
          <label class="form-check-label form-check">
@@ -21,6 +21,16 @@
         @endforeach
        
       
+    </div> --}}
+    <div class="form-group">
+        <div class="form-group ">
+            <label>Permissions for this Role:</label>
+            @foreach ($controllers as $c)
+                <label class="form-check-label form-check">
+                    <input class="form-check-input" type="checkbox" name="permissions[]"value="{{ $c['controller'] }}_{{ $c['action'] }}"> {{ $c['controller'] }} - {{ $c['action'] }}
+                </label>
+            @endforeach
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

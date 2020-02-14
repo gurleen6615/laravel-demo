@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/about-us', 'PagesController@about_us')->name('about-us');
+Route::get('/contact-us', 'PagesController@contact_us')->name('contact-us');
+Route::get('/privacy', 'PagesController@privacy')->name('privacy');
+Route::get('/terms', 'PagesController@terms')->name('terms');
 
 Auth::routes();
 
@@ -28,7 +32,7 @@ Route::middleware('is_admin')->group(function () {
 	Route::get('admin/home', 'AdminController@dashboard')->name('admin.home');
 
 	Route::get('admin/permissions', 'AdminController@permissions')->name('admin.permissions');
-	Route::match(['get', 'post'],'admin/add_permission', 'AdminController@add_permission')->name('admin.add_permission');
+	Route::match(['get', 'post'],'admin/update_permissions', 'AdminController@update_permissions')->name('admin.update_permissions');
 	Route::match(['get', 'post'],'admin/edit_permission/{permission_id}', 'AdminController@edit_permission')->name('admin.edit_permission');
 	Route::get('admin/delete_permission/{permission_id}', 'AdminController@delete_permission')->name('admin.delete_permission');
 
@@ -39,5 +43,9 @@ Route::middleware('is_admin')->group(function () {
 	Route::get('admin/delete_role/{role_id}', 'AdminController@delete_role')->name('admin.delete_role');
 
 	Route::post('admin/save_user_role', 'AdminController@save_user_role')->name('admin.save_user_role');
+
+	Route::get('admin/manage_posts', 'PostsController@index')->name('admin.manage_posts');
+
+	Route::get('admin/manage_pages', 'ManagePagesController@index')->name('admin.manage_pages');
 });
 

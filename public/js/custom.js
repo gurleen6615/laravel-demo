@@ -18,11 +18,20 @@
 			},
 			url:'/admin/save_user_role',
 			success:function(resp){
-				$('.success-box').show();
-				setTimeout(function(){
-					$('.success-box').hide();
-				},3000);
-				console.log(resp,"response");
+				if(resp=="success"){
+					$('.success-box').show();
+					setTimeout(function(){
+						$('.success-box').hide();
+					},3000);
+					console.log(resp,"response");
+				}
+				else{
+					$('.error-box').html("You don't have permission for this action").show();
+					setTimeout(function(){
+						$('.error-box').hide();
+					},3000);
+					console.log(resp,"response");
+				}
 			},
 			error:function(error){
 				console.log("ERROR");	
